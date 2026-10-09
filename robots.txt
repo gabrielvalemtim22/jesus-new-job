@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jesus-new-job.vercel.app/sitemap.xml

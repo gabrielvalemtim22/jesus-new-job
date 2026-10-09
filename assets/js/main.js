@@ -204,7 +204,7 @@
   /* ---------- lightbox ---------- */
   const lb = $('#lightbox');
   if (lb && workCards.length) {
-    const lbImg = $('.lb__img', lb), lbTitle = $('.lb__title', lb), lbCat = $('.lb__cat', lb), lbCount = $('.lb__count', lb), lbCta = $('.lb__cta', lb);
+    const lbImg = $('.lb__img', lb), lbVideo = $('.lb__video', lb), lbTitle = $('.lb__title', lb), lbCat = $('.lb__cat', lb), lbCount = $('.lb__count', lb), lbCta = $('.lb__cta', lb);
     let list = [], idx = 0, token = 0;
     const pad = n => String(n).padStart(2, '0');
     const show = () => {
@@ -218,6 +218,19 @@
       lbCat.textContent = cat;
       lbCount.textContent = `${pad(idx + 1)} / ${pad(list.length)}`;
       lbCta.href = waLink(`Olá, Jesus New Job! Vi o projeto "${name}" no site e quero um orçamento para algo parecido.`);
+      lbVideo.pause();
+      if (card.dataset.video) {
+        lbImg.hidden = true;
+        lbVideo.hidden = false;
+        lbVideo.poster = img.dataset.full;
+        lbVideo.src = card.dataset.video;
+        lbVideo.setAttribute('aria-label', 'Vídeo: ' + img.alt);
+        lbVideo.play().catch(() => {});
+        return;
+      }
+      lbVideo.hidden = true;
+      lbVideo.removeAttribute('src');
+      lbImg.hidden = false;
       const pre = new Image();
       pre.onload = pre.onerror = () => {
         if (my !== token) return;
@@ -242,7 +255,7 @@
     $('.lb__close', lb).addEventListener('click', () => lb.close());
     $('.lb__prev', lb).addEventListener('click', () => go(-1));
     $('.lb__next', lb).addEventListener('click', () => go(1));
-    lb.addEventListener('close', () => root.classList.remove('lb-open'));
+    lb.addEventListener('close', () => { root.classList.remove('lb-open'); lbVideo.pause(); });
     lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
     lb.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') go(-1);
@@ -274,6 +287,28 @@
       if (e.isIntersecting) { if (!reduce && !userPaused) play(); }
       else if (!video.paused) pause();
     }, { threshold: 0.35 }).observe(video);
+
+    // troca de vídeo
+    const tabs = $$('.phone__tabs button', phone);
+    const label = $('[data-video-label]', phone);
+    const text = $('[data-video-text]');
+    tabs.forEach(tab => tab.addEventListener('click', () => {
+      if (tab.getAttribute('aria-pressed') === 'true') return;
+      tabs.forEach(b => b.setAttribute('aria-pressed', String(b === tab)));
+      phone.classList.add('is-switching');
+      setTimeout(() => {
+        video.pause();
+        video.poster = tab.dataset.poster;
+        video.dataset.src = tab.dataset.src;
+        video.src = tab.dataset.src;
+        video.setAttribute('aria-label', 'Vídeo: ' + tab.dataset.label);
+        label.textContent = tab.dataset.label;
+        if (text) text.textContent = tab.dataset.text;
+        userPaused = false;
+        play();
+        phone.classList.remove('is-switching');
+      }, reduce ? 0 : 260);
+    }));
   }
 
   /* ---------- FAQ com animação ---------- */

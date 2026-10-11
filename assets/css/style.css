@@ -726,3 +726,9 @@ ul, ol { padding: 0; list-style: none; }
   .js .neon { color: var(--red-hot); text-shadow: var(--glow); }
   .ticker__track { animation: none; }
 }
+
+
+/* Identidade visual atualizada: azul da fachada Jesus New Job. */
+img[src$="mark.webp"], img[src$="logo-circle.webp"] {
+  filter: hue-rotate(218deg) saturate(1.1);
+}

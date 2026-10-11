@@ -128,7 +128,7 @@ ul, ol { padding: 0; list-style: none; }
 .btn--lg { min-height: 60px; padding: 0 32px; font-size: 16px; }
 .btn--sm { min-height: 44px; padding: 0 20px; font-size: 14px; }
 .btn--block { width: 100%; }
-.btn--insta { --bg: linear-gradient(45deg, #f9a43a, #e1306c 45%, #8a3ab9); --hover-bg: var(--ink); --hover-fg: #fff; background: linear-gradient(45deg, #f9a43a, #e1306c 45%, #8a3ab9); min-height: 46px; padding: 0 20px; font-size: 14px; }
+.btn--insta { --bg: linear-gradient(45deg, #0b3bc4, #2a62f5 55%, #7fb2ff); --hover-bg: var(--ink); --hover-fg: #fff; background: linear-gradient(45deg, #0b3bc4, #2a62f5 55%, #7fb2ff); min-height: 46px; padding: 0 20px; font-size: 14px; }
 .magnetic { will-change: transform; }
 
 /* ---------- preloader ---------- */
@@ -515,7 +515,7 @@ ul, ol { padding: 0; list-style: none; }
 .insta__grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(40px, 6vw, 100px); align-items: center; }
 .insta__text { color: var(--muted); font-size: 17px; max-width: 420px; margin: 26px 0 34px; }
 .insta__card { display: flex; align-items: center; gap: 16px; padding: 16px; max-width: 470px; border-radius: 22px; background: var(--paper); border: 1px solid var(--line); }
-.insta__avatar { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #f9a43a, #e1306c, #8a3ab9); flex: none; }
+.insta__avatar { width: 64px; height: 64px; border-radius: 50%; padding: 3px; background: linear-gradient(45deg, #0b3bc4, #2a62f5, #9ecbff); flex: none; }
 .insta__card > div { flex: 1; min-width: 0; display: grid; }
 .insta__card strong { font-size: 16px; }
 .insta__card span { font-size: 13px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
